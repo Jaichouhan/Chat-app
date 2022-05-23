@@ -107,6 +107,8 @@ const Home = () => {
     setImg("");
   };
 
+  console.log(chat);
+
   return (
     <div className="home_container">
       <div className="users_container">
@@ -142,15 +144,17 @@ const Home = () => {
             <div className="chat-model-size-img">
               <img src="/static/media/image1.f02b66c0.jpg" alt="img" />
 
-              <div className="chat-model-size-status">
-                <p>{chat.name}</p>
-                <span>1 min</span>
-              </div>
+              {
+                <div className="chat-model-size-status">
+                  <p>{chat.name}</p>
+                  <span>1 min</span>
+                </div>
+              }
             </div>
             <div className="messages">
               {msgs.length
                 ? msgs.map((msg, i) => (
-                    <Message key={i} msg={msg} user1={user1} />
+                    <Message key={i} msg={msg} user1={user1} text={text} />
                   ))
                 : null}
             </div>
