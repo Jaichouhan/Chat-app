@@ -259,12 +259,26 @@ section .form {
 .truncate strong {
   margin-right: 10px;
 }
+.text_container small {
+  color: var(--color-1);
+}
+.text_container p {
+  color: var(--color-1);
+  font-size: 14px;
+  margin-bottom: 7px;
+}
+label {
+  color: var(--color-1);
+}
 .unread {
   margin-left: 10px;
-  background: var(--color-3);
-  color: white;
-  padding: 2px 4px;
-  border-radius: 10px;
+  background-color: white;
+  padding: 2px 6px;
+  color: #0084ff;
+  height: 30px;
+  width: 30px;
+  border-radius: 30px;
+  font-size: 10px;
 }
 .sm_screen {
   display: none;
@@ -722,18 +736,18 @@ section .form {
   overflow-y: scroll;
 }
 
-.chat-model-size-height1::-webkit-scrollbar {
+.messages::-webkit-scrollbar {
   width: 6px;
 }
 
 /* Track */
-.chat-model-size-height1::-webkit-scrollbar-track {
+.messages::-webkit-scrollbar-track {
   background: #f9f9f9;
   border-radius: 1px;
 }
 
 /* Handle */
-.chat-model-size-height1::-webkit-scrollbar-thumb {
+.messages::-webkit-scrollbar-thumb {
   background: #c7c7c7;
 }
 

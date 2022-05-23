@@ -47,10 +47,10 @@ const User = ({ user1, user, selectUser, chat }) => {
               )}
             </div>
             <p className="chat-page-user-info-p">4m</p>
+            {/* <div
+              className={`user_status ${user.isOnline ? "online" : "offline"}`}
+           ></div>*/}
           </div>
-          {/*    <div
-            className={`user_status ${user.isOnline ? "online" : "offline"}`}
-              ></div> */}
         </div>
       </div>
       <div
