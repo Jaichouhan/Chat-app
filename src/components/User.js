@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Img from "../image1.jpg";
 import { onSnapshot, doc } from "firebase/firestore";
 import { db } from "../firebase";
+import Moment from "react-moment";
 
 const User = ({ user1, user, selectUser, chat }) => {
   const user2 = user?.uid;
@@ -46,7 +47,18 @@ const User = ({ user1, user, selectUser, chat }) => {
                 </p>
               )}
             </div>
-            <p className="chat-page-user-info-p">4m</p>
+            <p className="chat-page-user-info-p">
+              <Moment fromNow>
+                {user.isOnline
+                  ? user.createdAt.toDate()
+                  : user.createdAt.toDate()}
+              </Moment>
+              <div
+                className={`user_status ${
+                  user.isOnline ? "online" : "offline"
+                }`}
+              ></div>
+            </p>
             {/* <div
               className={`user_status ${user.isOnline ? "online" : "offline"}`}
            ></div>*/}

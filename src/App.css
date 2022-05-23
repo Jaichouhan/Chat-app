@@ -160,6 +160,7 @@ section .form {
   width: 10px;
   height: 10px;
   border-radius: 50%;
+  margin-left: 5px;
 }
 .online {
   background: #34eb52;
@@ -708,6 +709,8 @@ label {
   margin-bottom: 0px;
   font-size: 11px;
   color: #ffffff;
+  display: flex;
+  align-items: center;
 }
 
 .chatpage-wrapper {
