@@ -32,11 +32,12 @@ const User = ({ user1, user, selectUser, chat }) => {
           <div className="chat-page-user-info">
             <img src={user.avatar || Img} alt="avatar" />
             <div className="chat-page-user-name">
-              <p>{user.name}</p>
-
-              {data?.from !== user1 && data?.unread && (
-                <small className="unread">New</small>
-              )}
+              <p>
+                {user.name}
+                {data?.from !== user1 && data?.unread && (
+                  <small className="unread">New</small>
+                )}
+              </p>
 
               {data && (
                 <p className="truncate">

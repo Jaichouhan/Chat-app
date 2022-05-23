@@ -59,6 +59,8 @@ const Home = () => {
       setMsgs(msgs);
     });
 
+    console.log(msgs);
+
     // get last message b/w logged in user and selected user
     const docSnap = await getDoc(doc(db, "lastMsg", id));
     // if last message exists and message is from selected user

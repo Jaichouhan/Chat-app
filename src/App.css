@@ -363,7 +363,7 @@ section .form {
   display: flex;
   align-items: center;
   border-bottom: 1px solid #dce0e0;
-  margin-top: 15px;
+  /* margin-top: 15px; */
 }
 .chat-model-size-img img {
   width: 40px;
@@ -498,6 +498,7 @@ section .form {
 .chat-model-size-input-i i {
   cursor: pointer;
   font-size: 14px;
+  margin-right: 9px;
 }
 .close-model {
   background: unset;
@@ -624,7 +625,7 @@ section .form {
   border: 1px solid #dce0e0;
   display: flex;
   padding: 16px 10px;
-  margin-top: 15px;
+  /* margin-top: 15px; */
 }
 .chat-page-border p {
   margin-bottom: 0px;
@@ -638,7 +639,7 @@ section .form {
   align-items: center;
   border-bottom: 1px solid #0288d1;
   display: flex;
-  padding: 2px 10px;
+  padding: 8px 10px;
   align-items: center;
   position: relative;
   margin-bottom: 5px;
@@ -667,7 +668,7 @@ section .form {
 .chat-page-user-name {
   position: relative;
   margin-left: 8px;
-  padding: 10px 0px;
+  /* padding: 10px 0px; */
   display: flex;
   flex-direction: column;
 }
