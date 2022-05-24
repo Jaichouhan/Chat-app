@@ -16,6 +16,8 @@ const Navbar = () => {
     });
     await signOut(auth);
     history.replace("/login");
+    window.localStorage.clear();
+    window.location.reload();
   };
   return (
     <nav>

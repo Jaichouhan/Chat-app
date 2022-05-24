@@ -43,7 +43,6 @@ const Home = () => {
   }, []);
 
   const selectUser = async (user) => {
-    console.log(user);
     setChat(user);
 
     const user2 = user.uid;

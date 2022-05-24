@@ -48,7 +48,7 @@ const Register = () => {
         loading: false,
         createdAt: Timestamp.fromDate(new Date()),
       });
-      history.replace("/model");
+      history.replace("/");
       localStorage.setItem("os-user", JSON.stringify(data));
     } catch (err) {
       setData({ ...data, error: err.message, loading: false });

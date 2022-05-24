@@ -3,14 +3,17 @@ import { AuthContext } from "../context/auth";
 import { Redirect, Route } from "react-router-dom";
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
-  const { user } = useContext(AuthContext);
-
+  const userDetailsChat = JSON.parse(localStorage.getItem("os-user"));
   return (
     <Route
       {...rest}
       exact
       render={(props) =>
-        user ? <Component {...props} /> : <Redirect to="/login" />
+        userDetailsChat.name ? (
+          <Component {...props} />
+        ) : (
+          <Redirect to="/login" />
+        )
       }
     />
   );

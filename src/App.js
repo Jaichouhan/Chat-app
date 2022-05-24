@@ -19,7 +19,7 @@ function App() {
           <Route exact path="/login" component={Login} />
           <PrivateRoute exact path="/profile" component={Profile} />
           <PrivateRoute exact path="/dashboard" component={Home} />
-          <Route exact path="/model" component={ClickModel} />
+          <Route exact path="/" component={ClickModel} />
         </Switch>
       </BrowserRouter>
     </AuthProvider>
