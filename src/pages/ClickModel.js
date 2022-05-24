@@ -5,6 +5,8 @@ import { auth, db } from "../firebase";
 import {
   addDoc,
   collection,
+  doc,
+  getDoc,
   onSnapshot,
   orderBy,
   query,
@@ -18,6 +20,7 @@ const ClickModel = () => {
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState("");
   const [chat, setChat] = useState([]);
+  const [user, setUser] = useState();
 
   const onOpenModal = () => setOpen(true);
   const onCloseModal = () => setOpen(false);
@@ -25,12 +28,23 @@ const ClickModel = () => {
 
   const user1 = auth.currentUser.uid;
 
+  const user2 = "zoqv2DmsFVNmtVyXIIb586IFmZ93";
+  const id = user1 > user2 ? `${user1 + user2}` : `${user2 + user1}`;
+
+  useEffect(() => {
+    getDoc(doc(db, "users", auth.currentUser.uid)).then((docSnap) => {
+      if (docSnap.exists) {
+        setUser(docSnap.data());
+      }
+    });
+  }, []);
+
   useEffect(() => {
     scrool.current?.scrollIntoView({ behavior: "smooth" });
   }, [message]);
 
   useEffect(() => {
-    const msgsRef = collection(db, "messages", "complain", `100-${user1}`);
+    const msgsRef = collection(db, "messages", id, "chat");
     const q = query(msgsRef, orderBy("createdAt", "asc"));
 
     onSnapshot(q, (querySnapshot) => {
@@ -43,11 +57,9 @@ const ClickModel = () => {
     });
   }, []);
 
-  console.log(user1);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await addDoc(collection(db, "messages", "complain", `100-${user1}`), {
+    await addDoc(collection(db, "messages", id, "chat"), {
       message,
       from: user1,
       createdAt: Timestamp.fromDate(new Date()),
@@ -56,7 +68,9 @@ const ClickModel = () => {
     });
     setMessage("");
   };
-  console.log(chat);
+
+  console.log(user);
+
   return (
     <div>
       {open === true ? (
@@ -70,8 +84,10 @@ const ClickModel = () => {
             <div className="chat-model-size-img">
               <img src="" alt="img" />
               <div className="chat-model-size-status">
-                <p>{userDetailsChat.name}</p>
-                <span>1s</span>
+                <p>{user && user.name}</p>
+                <span>
+                  <Moment fromNow>{user && user.createdAt.toDate()}</Moment>
+                </span>
               </div>
             </div>
             <div className="chat-model-size-height">

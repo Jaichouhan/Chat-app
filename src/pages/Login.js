@@ -6,7 +6,6 @@ import { useHistory } from "react-router-dom";
 
 const Login = () => {
   const [data, setData] = useState({
-    name: "",
     email: "",
     password: "",
     error: null,
@@ -15,7 +14,7 @@ const Login = () => {
 
   const history = useHistory();
 
-  const { name, email, password, error, loading } = data;
+  const { email, password, error, loading } = data;
 
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
@@ -24,7 +23,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setData({ ...data, error: null, loading: true });
-    if (!name || !email || !password) {
+    if (!email || !password) {
       setData({ ...data, error: "All fields are required" });
     }
     try {
@@ -34,7 +33,6 @@ const Login = () => {
         isOnline: true,
       });
       setData({
-        name: "",
         email: "",
         password: "",
         error: null,
@@ -50,10 +48,6 @@ const Login = () => {
     <section>
       <h3>Log into your Account</h3>
       <form className="form" onSubmit={handleSubmit}>
-        <div className="input_container">
-          <label htmlFor="name">Name</label>
-          <input type="text" name="name" value={name} onChange={handleChange} />
-        </div>
         <div className="input_container">
           <label htmlFor="email">Email</label>
           <input

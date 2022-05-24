@@ -43,6 +43,7 @@ const Home = () => {
   }, []);
 
   const selectUser = async (user) => {
+    console.log(user);
     setChat(user);
 
     const user2 = user.uid;
@@ -67,6 +68,7 @@ const Home = () => {
       await updateDoc(doc(db, "lastMsg", id), { unread: false });
     }
   };
+  console.log(msgs);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

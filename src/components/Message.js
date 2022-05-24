@@ -9,10 +9,7 @@ const Message = ({ msg, user1, text }) => {
   }, [msg]);
 
   return (
-    <div
-      className={`message_wrapper ${msg.from === user1 ? "own" : ""}`}
-      ref={scrollRef}
-    >
+    <div className={`message_wrapper ${msg.from === user1 ? "own" : ""}`}>
       {msg.text === "" ? null : (
         <div
           className={
@@ -20,6 +17,7 @@ const Message = ({ msg, user1, text }) => {
               ? "chat-model-size-client"
               : "chat-model-size-help"
           }
+          ref={scrollRef}
         >
           {msg.media ? <img src={msg.media} alt={msg.text} /> : null}
           <p> {msg.text}</p>

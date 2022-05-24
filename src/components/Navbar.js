@@ -27,6 +27,7 @@ const Navbar = () => {
       <div>
         {user ? (
           <div>
+            <Link to="/dashboard">Dashboard</Link>
             <Link to="/profile">Profile</Link>
             <button className="btn" onClick={handleSignout}>
               Logout
