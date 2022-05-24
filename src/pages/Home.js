@@ -43,6 +43,7 @@ const Home = () => {
   }, []);
 
   const selectUser = async (user) => {
+    console.log(user);
     setChat(user);
 
     const user2 = user.uid;
@@ -106,8 +107,6 @@ const Home = () => {
     setText("");
     setImg("");
   };
-
-  console.log(chat);
 
   return (
     <div className="home_container">

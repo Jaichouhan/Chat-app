@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "react-responsive-modal/styles.css";
 import { Modal } from "react-responsive-modal";
+import { auth } from "../firebase";
 
 const ClickModel = () => {
   const [open, setOpen] = useState(false);
@@ -8,9 +9,11 @@ const ClickModel = () => {
 
   const onOpenModal = () => setOpen(true);
   const onCloseModal = () => setOpen(false);
+  const userDetailsChat = JSON.parse(localStorage.getItem("os-user"));
+
+  const user1 = auth.currentUser.uid;
 
   const typeMessage = () => {};
-
   return (
     <div>
       {open === true ? (
@@ -24,7 +27,7 @@ const ClickModel = () => {
             <div className="chat-model-size-img">
               <img src="" alt="img" />
               <div className="chat-model-size-status">
-                <p>Hello</p>
+                <p>{userDetailsChat.name}</p>
                 <span>1s</span>
               </div>
             </div>

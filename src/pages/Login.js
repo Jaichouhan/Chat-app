@@ -38,7 +38,7 @@ const Login = () => {
         error: null,
         loading: false,
       });
-      history.replace("/");
+      history.replace("/model");
     } catch (err) {
       setData({ ...data, error: err.message, loading: false });
     }

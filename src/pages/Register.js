@@ -46,8 +46,10 @@ const Register = () => {
         password: "",
         error: null,
         loading: false,
+        createdAt: Timestamp.fromDate(new Date()),
       });
-      history.replace("/");
+      history.replace("/model");
+      localStorage.setItem("os-user", JSON.stringify(data));
     } catch (err) {
       setData({ ...data, error: err.message, loading: false });
     }
