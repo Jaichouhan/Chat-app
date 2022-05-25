@@ -68,7 +68,10 @@ const Home = () => {
       await updateDoc(doc(db, "lastMsg", id), { unread: false });
     }
   };
-  console.log(msgs);
+
+  console.log(user1);
+
+  console.log(users && users.map((data) => data.name).includes("admin"));
 
   const handleSubmit = async (e) => {
     e.preventDefault();
