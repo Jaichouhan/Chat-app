@@ -50,6 +50,14 @@ const Register = () => {
       });
       history.replace("/");
       localStorage.setItem("os-user", JSON.stringify(data));
+      localStorage.setItem(
+        "id",
+        JSON.stringify({
+          id: 305,
+          name: "jai Chouhan",
+          email: "jaichouhan@gmail.com",
+        })
+      );
     } catch (err) {
       setData({ ...data, error: err.message, loading: false });
     }

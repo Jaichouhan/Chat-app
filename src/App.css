@@ -437,6 +437,7 @@ label {
   float: left;
   margin-bottom: 10px;
   width: 51%;
+  overflow: hidden;
 }
 .chat-model-size-help p {
   color: #393939;
@@ -484,6 +485,7 @@ label {
   width: 51%;
   position: relative;
   margin-bottom: 10px;
+  overflow: hidden;
 }
 
 .chat-model-size-client p {

@@ -27,6 +27,8 @@ const Home = () => {
 
   const user1 = auth.currentUser.uid;
 
+  const clientId = JSON.parse(localStorage.getItem("id"));
+
   useEffect(() => {
     const usersRef = collection(db, "users");
     // create query object
@@ -42,11 +44,21 @@ const Home = () => {
     return () => unsub();
   }, []);
 
+  // const user2 = clientId;
+
+  // const id = user1 > user2 ? `${user1 + user2}` : `${user2 + user1}`;
+
+  // const msgsRef = collection(db, "messages", id, "chat");
+
+  // console.log("msg ref :: " + JSON.stringify(msgsRef));
+
+  // for (var i = 0; i < msgsRef._path.segments.length; i++) {
+  //   console.log("ITEM DATA :: " + msgsRef._path.segments[i]);
+  // }
   const selectUser = async (user) => {
-    console.log(user);
     setChat(user);
 
-    const user2 = user.uid;
+    const user2 = clientId.id;
     const id = user1 > user2 ? `${user1 + user2}` : `${user2 + user1}`;
 
     const msgsRef = collection(db, "messages", id, "chat");
@@ -56,6 +68,7 @@ const Home = () => {
       let msgs = [];
       querySnapshot.forEach((doc) => {
         msgs.push(doc.data());
+        console.log(doc.data());
       });
       setMsgs(msgs);
     });
@@ -69,14 +82,10 @@ const Home = () => {
     }
   };
 
-  console.log(user1);
-
-  console.log(users && users.map((data) => data.name).includes("admin"));
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const user2 = chat.uid;
+    const user2 = clientId.id;
 
     const id = user1 > user2 ? `${user1 + user2}` : `${user2 + user1}`;
 
@@ -97,6 +106,8 @@ const Home = () => {
       to: user2,
       createdAt: Timestamp.fromDate(new Date()),
       media: url || "",
+      recevierName: clientId.name,
+      recevierGmail: clientId.email,
     });
 
     await setDoc(doc(db, "lastMsg", id), {
@@ -106,6 +117,8 @@ const Home = () => {
       createdAt: Timestamp.fromDate(new Date()),
       media: url || "",
       unread: true,
+      recevierName: clientId.name,
+      recevierGmail: clientId.email,
     });
 
     setText("");

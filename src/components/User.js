@@ -23,13 +23,6 @@ const User = ({ user1, user, selectUser, chat }) => {
         onClick={() => selectUser(user)}
       >
         <div className="user_info">
-          {/*  <div className="user_detail">
-            <img src={user.avatar || Img} alt="avatar" className="avatar" />
-            <h4>{user.name}</h4>
-            {data?.from !== user1 && data?.unread && (
-              <small className="unread">New</small>
-            )}
-            </div>*/}
           <div className="chat-page-user-info">
             <img src={user.avatar || Img} alt="avatar" />
             <div className="chat-page-user-name">

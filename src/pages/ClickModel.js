@@ -13,12 +13,12 @@ import {
   Timestamp,
 } from "firebase/firestore";
 import Moment from "react-moment";
-
+import Img from "../image1.jpg";
 const ClickModel = () => {
   const scrool = useRef();
 
   const [open, setOpen] = useState(false);
-  const [message, setMessage] = useState("");
+  const [text, setText] = useState("");
   const [chat, setChat] = useState([]);
   const [user, setUser] = useState();
 
@@ -27,9 +27,11 @@ const ClickModel = () => {
   const userDetailsChat = JSON.parse(localStorage.getItem("os-user"));
 
   const user1 = auth.currentUser.uid;
+  // const users = auth.onAuthStateChanged((user) => {
+  //   console.log(user.uid);
+  // });
 
-  const user2 = "zoqv2DmsFVNmtVyXIIb586IFmZ93";
-  const id = user1 > user2 ? `${user1 + user2}` : `${user2 + user1}`;
+  const clientId = JSON.parse(localStorage.getItem("id"));
 
   useEffect(() => {
     getDoc(doc(db, "users", auth.currentUser.uid)).then((docSnap) => {
@@ -41,9 +43,11 @@ const ClickModel = () => {
 
   useEffect(() => {
     scrool.current?.scrollIntoView({ behavior: "smooth" });
-  }, [message]);
+  }, [text]);
 
   useEffect(() => {
+    const user2 = clientId.id;
+    const id = user1 > user2 ? `${user1 + user2}` : `${user2 + user1}`;
     const msgsRef = collection(db, "messages", id, "chat");
     const q = query(msgsRef, orderBy("createdAt", "asc"));
 
@@ -51,7 +55,6 @@ const ClickModel = () => {
       let msgs = [];
       querySnapshot.forEach((doc) => {
         msgs.push(doc.data());
-        console.log(doc.data());
       });
       setChat(msgs);
     });
@@ -59,17 +62,20 @@ const ClickModel = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const user2 = clientId.id;
+    const id = user1 > user2 ? `${user1 + user2}` : `${user2 + user1}`;
     await addDoc(collection(db, "messages", id, "chat"), {
-      message,
+      text,
       from: user1,
+      to: user2,
       createdAt: Timestamp.fromDate(new Date()),
-      senderName: userDetailsChat.name,
+      // senderName: userDetailsChat.name,
       senderGmail: userDetailsChat.email,
+      recevierName: clientId.name,
+      recevierGmail: clientId.email,
     });
-    setMessage("");
+    setText("");
   };
-
-  console.log(user);
 
   return (
     <div>
@@ -82,7 +88,7 @@ const ClickModel = () => {
         >
           <div className="chat-model-size">
             <div className="chat-model-size-img">
-              <img src="" alt="img" />
+              <img src={Img} alt="img" />
               <div className="chat-model-size-status">
                 <p>{user && user.name}</p>
                 <span>
@@ -103,7 +109,7 @@ const ClickModel = () => {
                     style={{ position: "relative" }}
                     ref={scrool}
                   >
-                    <p>{data.message}</p>
+                    <p>{data.text}</p>
                     <span>
                       <Moment fromNow>{data.createdAt.toDate()}</Moment>
                     </span>
@@ -118,12 +124,12 @@ const ClickModel = () => {
                     <input
                       type="text"
                       placeholder="Say something"
-                      value={message}
-                      onInput={(e) => setMessage(e.target.value)}
+                      value={text}
+                      onInput={(e) => setText(e.target.value)}
                     />
                   </div>
                   <div className="">
-                    <button type="submit" disabled={!message}>
+                    <button type="submit" disabled={!text}>
                       Send
                     </button>
                   </div>
