@@ -77,6 +77,8 @@ const ClickModel = () => {
     setText("");
   };
 
+  console.log(chat);
+
   return (
     <div>
       {open === true ? (
@@ -109,6 +111,10 @@ const ClickModel = () => {
                     style={{ position: "relative" }}
                     ref={scrool}
                   >
+                    {data.media ? (
+                      <img src={data.media} alt={data.text} />
+                    ) : null}
+
                     <p>{data.text}</p>
                     <span>
                       <Moment fromNow>{data.createdAt.toDate()}</Moment>

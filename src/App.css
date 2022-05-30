@@ -500,6 +500,12 @@ label {
   right: 11px;
   bottom: 18px;
 }
+.chat-model-size-help-model img {
+  width: 100%;
+  overflow: hidden;
+  height: 100%;
+}
+
 .chat-model-size-client-model {
   background-color: #00bcd4;
   border: 1px solid #dce0e0;
@@ -513,7 +519,11 @@ label {
   position: relative;
   margin-bottom: 10px;
 }
-
+.chat-model-size-client-model img {
+  width: 100%;
+  overflow: hidden;
+  height: 100%;
+}
 .chat-model-size-client-model p {
   color: #d3f3f7;
   font-size: 14px;

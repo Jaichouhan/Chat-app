@@ -10,22 +10,18 @@ const Message = ({ msg, user1, text }) => {
 
   return (
     <div className={`message_wrapper ${msg.from === user1 ? "own" : ""}`}>
-      {msg.text === "" ? null : (
-        <div
-          className={
-            msg.from === user1
-              ? "chat-model-size-client"
-              : "chat-model-size-help"
-          }
-          ref={scrollRef}
-        >
-          {msg.media ? <img src={msg.media} alt={msg.text} /> : null}
-          <p> {msg.text}</p>
-          <span>
-            <Moment fromNow>{msg.createdAt.toDate()}</Moment>
-          </span>
-        </div>
-      )}
+      <div
+        className={
+          msg.from === user1 ? "chat-model-size-client" : "chat-model-size-help"
+        }
+        ref={scrollRef}
+      >
+        {msg.media ? <img src={msg.media} alt={msg.text} /> : null}
+        <p> {msg.text}</p>
+        <span>
+          <Moment fromNow>{msg.createdAt.toDate()}</Moment>
+        </span>
+      </div>
 
       {/* <p className={msg.from === user1 ? "me" : "friend"}>
         {msg.media ? <img src={msg.media} alt={msg.text} /> : null}

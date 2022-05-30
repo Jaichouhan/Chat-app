@@ -20,9 +20,12 @@ const Profile = () => {
   useEffect(() => {
     getDoc(doc(db, "users", auth.currentUser.uid)).then((docSnap) => {
       if (docSnap.exists) {
+        console.log(docSnap.data());
         setUser(docSnap.data());
       }
     });
+
+    console.log(auth);
 
     if (img) {
       const uploadImg = async () => {

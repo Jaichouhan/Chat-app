@@ -29,11 +29,15 @@ const Home = () => {
 
   const clientId = JSON.parse(localStorage.getItem("id"));
 
+  const user2 = clientId.id;
+  const id = user1 > user2 ? `${user1 + user2}` : `${user2 + user1}`;
+
+  const msgsRef = collection(db, "messages", id, "chat");
+  const q = query(msgsRef, orderBy("createdAt", "asc"));
+
   useEffect(() => {
     const usersRef = collection(db, "users");
-    // create query object
     const q = query(usersRef, where("uid", "not-in", [user1]));
-    // execute query
     const unsub = onSnapshot(q, (querySnapshot) => {
       let users = [];
       querySnapshot.forEach((doc) => {
@@ -44,22 +48,19 @@ const Home = () => {
     return () => unsub();
   }, []);
 
-  // const user2 = clientId;
+  // useEffect(() => {
+  //   for (var i = 0; i < msgsRef._path.segments.length; i++) {
+  //     if (msgsRef._path.segments[i] === user1) {
+  //       console.log(3);
+  //       console.log("ITEM DATA :: " + msgsRef._path.segments[i]);
+  //     } else {
+  //       console.log(2);
+  //     }
+  //   }
+  // }, []);
 
-  // const id = user1 > user2 ? `${user1 + user2}` : `${user2 + user1}`;
-
-  // const msgsRef = collection(db, "messages", id, "chat");
-
-  // console.log("msg ref :: " + JSON.stringify(msgsRef));
-
-  // for (var i = 0; i < msgsRef._path.segments.length; i++) {
-  //   console.log("ITEM DATA :: " + msgsRef._path.segments[i]);
-  // }
   const selectUser = async (user) => {
     setChat(user);
-
-    const user2 = clientId.id;
-    const id = user1 > user2 ? `${user1 + user2}` : `${user2 + user1}`;
 
     const msgsRef = collection(db, "messages", id, "chat");
     const q = query(msgsRef, orderBy("createdAt", "asc"));
@@ -68,7 +69,6 @@ const Home = () => {
       let msgs = [];
       querySnapshot.forEach((doc) => {
         msgs.push(doc.data());
-        console.log(doc.data());
       });
       setMsgs(msgs);
     });
@@ -84,11 +84,9 @@ const Home = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const user2 = clientId.id;
-
-    const id = user1 > user2 ? `${user1 + user2}` : `${user2 + user1}`;
-
+    if (!text) {
+      return false;
+    }
     let url;
     if (img) {
       const imgRef = ref(
@@ -100,7 +98,7 @@ const Home = () => {
       url = dlUrl;
     }
 
-    await addDoc(collection(db, "messages", id, "chat"), {
+    addDoc(collection(db, "messages", id, "chat"), {
       text,
       from: user1,
       to: user2,
@@ -110,7 +108,7 @@ const Home = () => {
       recevierGmail: clientId.email,
     });
 
-    await setDoc(doc(db, "lastMsg", id), {
+    setDoc(doc(db, "lastMsg", id), {
       text,
       from: user1,
       to: user2,
@@ -120,7 +118,6 @@ const Home = () => {
       recevierName: clientId.name,
       recevierGmail: clientId.email,
     });
-
     setText("");
     setImg("");
   };
@@ -149,14 +146,6 @@ const Home = () => {
       <div className="messages_container">
         {chat ? (
           <>
-            {/*   <div className="messages_user">
-              <h3>{chat.name}</h3>
-              <img
-                src="/static/media/image1.f02b66c0.jpg"
-                alt="avatar"
-                className="chat-page-user-inf_img"
-              ></img>
-        </div>*/}
             <div className="chat-model-size-img">
               <img src="/static/media/image1.f02b66c0.jpg" alt="img" />
 
