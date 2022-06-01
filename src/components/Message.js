@@ -20,6 +20,7 @@ const Message = ({ msg, user1, text }) => {
         <p> {msg.text}</p>
         <span>
           <Moment fromNow>{msg.createdAt.toDate()}</Moment>
+          {console.log(msg)}
         </span>
       </div>
 

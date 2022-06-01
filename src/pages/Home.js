@@ -39,7 +39,18 @@ const Home = () => {
   //   this.setState({ stores: snapshot.val() });
   // });
 
-  console.log(msgsRef, q);
+  // useEffect(() => {
+  //   db.collection("lists").onSnapshot((snapshot) =>
+  //     snapshot.docs.fiter((doc) =>
+  //       doc
+  //         .data()
+  //         .users.find(
+  //           (user) =>
+  //             user.name === userName && setMyList((prev) => [...prev, doc])
+  //         )
+  //     )
+  //   );
+  // }, []);
 
   useEffect(() => {
     const usersRef = collection(db, "users");
@@ -186,3 +197,5 @@ const Home = () => {
 };
 
 export default Home;
+// Sir I have tried my best but user list filter is not working please forgive me for this
+// I've searched all this and coded all this
