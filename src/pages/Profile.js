@@ -25,8 +25,6 @@ const Profile = () => {
       }
     });
 
-    console.log(auth);
-
     if (img) {
       const uploadImg = async () => {
         const imgRef = ref(

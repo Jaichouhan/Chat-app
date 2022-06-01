@@ -60,24 +60,21 @@ const ClickModel = () => {
     });
   }, []);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     const user2 = clientId.id;
     const id = user1 > user2 ? `${user1 + user2}` : `${user2 + user1}`;
-    await addDoc(collection(db, "messages", id, "chat"), {
+    addDoc(collection(db, "messages", id, "chat"), {
       text,
       from: user1,
       to: user2,
       createdAt: Timestamp.fromDate(new Date()),
-      // senderName: userDetailsChat.name,
       senderGmail: userDetailsChat.email,
       recevierName: clientId.name,
       recevierGmail: clientId.email,
     });
     setText("");
   };
-
-  console.log(chat);
 
   return (
     <div>

@@ -34,6 +34,12 @@ const Home = () => {
 
   const msgsRef = collection(db, "messages", id, "chat");
   const q = query(msgsRef, orderBy("createdAt", "asc"));
+  // var recentPostsRef = collection(db, "/messages");
+  // recentPostsRef.once("value").then((snapshot) => {
+  //   this.setState({ stores: snapshot.val() });
+  // });
+
+  console.log(msgsRef, q);
 
   useEffect(() => {
     const usersRef = collection(db, "users");
@@ -56,7 +62,7 @@ const Home = () => {
   //     } else {
   //       console.log(2);
   //     }
-  //   }
+  // }
   // }, []);
 
   const selectUser = async (user) => {
@@ -104,8 +110,8 @@ const Home = () => {
       to: user2,
       createdAt: Timestamp.fromDate(new Date()),
       media: url || "",
-      recevierName: clientId.name,
-      recevierGmail: clientId.email,
+      senderName: clientId.name,
+      senderGmail: clientId.email,
     });
 
     setDoc(doc(db, "lastMsg", id), {
@@ -115,8 +121,8 @@ const Home = () => {
       createdAt: Timestamp.fromDate(new Date()),
       media: url || "",
       unread: true,
-      recevierName: clientId.name,
-      recevierGmail: clientId.email,
+      senderName: clientId.name,
+      senderGmail: clientId.email,
     });
     setText("");
     setImg("");
@@ -143,6 +149,7 @@ const Home = () => {
           />
         ))}
       </div>
+
       <div className="messages_container">
         {chat ? (
           <>
