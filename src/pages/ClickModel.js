@@ -46,7 +46,7 @@ const ClickModel = () => {
   }, [text]);
 
   useEffect(() => {
-    const user2 = clientId.id;
+    const user2 = clientId && clientId.id;
     const id = user1 > user2 ? `${user1 + user2}` : `${user2 + user1}`;
     const msgsRef = collection(db, "messages", id, "chat");
     const q = query(msgsRef, orderBy("createdAt", "asc"));
