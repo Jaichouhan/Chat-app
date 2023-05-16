@@ -29,7 +29,7 @@ const Home = () => {
 
   const clientId = JSON.parse(localStorage.getItem("id"));
 
-  const user2 = clientId.id;
+  const user2 = clientId?.id;
   const id = user1 > user2 ? `${user1 + user2}` : `${user2 + user1}`;
 
   const msgsRef = collection(db, "messages", id, "chat");
